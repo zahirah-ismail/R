@@ -1,6 +1,9 @@
 library(MASS)
 library(ISLR)
-names(cars)
+##install.packages("dplyr")
+library("dplyr")
+my_data = cars
+my_data
 fix(cars)
 plot(speed~dist,cars)
 fitcars=lm(speed~dist, data=cars)
@@ -10,4 +13,6 @@ boxplot(speed~dist,data=cars, main="distance vs speed in cars", xlab="Distance" 
 confint(fitcars)
 abline(fitcars,col="green")
 predict(fitcars,data.frame(dist=c(23)), interval="confidence")
-
+mutate(my_data ,
+       time = dist/speed
+       )
