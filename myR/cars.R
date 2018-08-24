@@ -13,6 +13,12 @@ boxplot(speed~dist,data=cars, main="distance vs speed in cars", xlab="Distance" 
 confint(fitcars)
 abline(fitcars,col="green")
 predict(fitcars,data.frame(dist=c(23)), interval="confidence")
-mutate(my_data ,
-       time = dist/speed
-       )
+##mutate(my_data ,
+   ##    time = dist/speed
+       ##)
+##transmute(mydata,
+          
+         ## )
+
+time <- data.frame(dist/speed)
+boxplot(dist~time,data=cars, main="distance vs speed in cars", xlab="Distance" ,ylab="speed")
