@@ -4,7 +4,7 @@ require(boot)
 ?cv.glm
 plot(mpg~horsepower,data=Auto)
 
-##LOOCV - leave one out cross validation
+##LOOCV - leave one out cross validation fits a model repeatedly and leaves an observation out
 glm.fit=glm(mpg~horsepower, data=Auto)
 cv.glm(Auto,glm.fit)$delta 
 
@@ -54,3 +54,4 @@ alpha.fn(Portfolio,sample(1:100,100,replace=TRUE))
 boot.out=boot(Portfolio,alpha.fn,R=1000)
 boot.out
 plot(boot.out)
+

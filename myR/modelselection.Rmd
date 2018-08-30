@@ -1,0 +1,49 @@
+---
+title: "modelselection"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(ISLR)
+summary(Hitters)
+```
+there are some missing values here, so before we proceed we will remove them
+
+```{r}
+Hitters=na.omit(Hitters)
+with(Hitters,sum(is.na(Salary)))
+```
+Best subset Regression
+========================
+
+```{r}
+##install.packages("leaps")
+library(leaps)
+regfit.full=regsubsets(Salary~.,data=Hitters)
+summary(regfit.full)
+
+```
+
+it gives by default best-subsets up to 8; lets increase tha tto 19
+o.e all the variables
+
+```{r}
+regfit.full=regsubsets(Salary~.,data=Hitters, nvmax=19)
+reg.summary=summary(regfit.full)
+names(reg.summary)
+plot(reg.summary$cp,xlab="number of variables", ylab="Cp")
+which.min(reg.summary$cp)
+points(10,reg.summary$cp[10],pch=20,col="red")
+
+```
+there is a plot method for the `regsubset` object
+
+```{r}
+plot(regfit.full,scale="cp")
+coef(regfit.full,10)
+```
